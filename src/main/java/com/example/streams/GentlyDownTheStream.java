@@ -1,6 +1,7 @@
 package com.example.streams;
 
 import java.util.*;
+
 import java.util.stream.Collectors;
 
 /**
@@ -30,46 +31,74 @@ public class GentlyDownTheStream {
 
     // TODO - return a list of sorted fruits with all fruits filtered out that start with "A"
     public List<String> sortedFruitsException() {
-        return null;
+        return this.fruits.stream()
+            .filter(x -> !x.startsWith("A"))
+            .sorted()
+            .collect(Collectors.toList());
     }
 
     // TODO - return a list with the first 2 elements of a sorted list of fruits
     public List<String> sortedFruitsFirstTwo() {
-        return null;
+        return this.fruits.stream()
+            .sorted()
+            .limit(2)
+            .collect(Collectors.toList());
     }
 
     // TODO - return a comma separated String of sorted fruits
     public String commaSeparatedListOfFruits() {
-        return null;
+        return this.fruits.stream()
+            .sorted()
+            .collect(Collectors.joining(", "));
     }
 
     // TODO - return a list of veggies that are sorted in reverse (descending) order
     public List<String> reverseSortedVeggies() {
-        return null;
+        return this.veggies.stream()
+            .sorted(Comparator.reverseOrder())
+            .collect(Collectors.toList());
     }
 
     // TODO - return a list of veggies that are sorted in reverse order, and all in upper case
     public List<String> reverseSortedVeggiesInUpperCase() {
-        return null;
+        return this.veggies.stream()
+            .sorted(Comparator.reverseOrder())
+            .map(v -> v.toUpperCase(Locale.ROOT))
+            .collect(Collectors.toList());
     }
 
     // TODO - return a list of the top 10 values in the list of random integers
     public List<Integer> topTen() {
-        return null;
+        return this.integerValues.stream()
+            .sorted(Comparator.reverseOrder())
+            .limit(10)
+            .collect(Collectors.toList());
     }
 
     // TODO - return a list of the top 10 unique values in the list of random integers
     public List<Integer> topTenUnique() {
-        return null;
+        return this.integerValues.stream()
+            .sorted(Comparator.reverseOrder())
+            .distinct()
+            .limit(10)
+            .collect(Collectors.toList());
     }
 
     // TODO - return a list of the top 10 unique values in the list of random integers that are odd
     public List<Integer> topTenUniqueOdd() {
-        return null;
+        return this.integerValues.stream()
+            .sorted(Comparator.reverseOrder())
+            .distinct()
+            .filter(x -> x % 2 != 0)
+            .limit(10)
+            .collect(Collectors.toList());
     }
 
     // TODO - return a single value that represents the average of all of your random numbers
     public Double average() {
-        return null;
+        return this.integerValues.stream()
+            .mapToInt(i -> i)
+            .average()
+            .getAsDouble();
     }
 }
